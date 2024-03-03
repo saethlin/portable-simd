@@ -126,7 +126,7 @@ unsafe fn avx2_pshufb(bytes: Simd<u8, 32>, idxs: Simd<u8, 32>) -> Simd<u8, 32> {
 /// # Safety
 /// The correctness of this function hinges on the sizes agreeing in actuality.
 #[allow(dead_code)]
-#[inline(always)]
+#[inline]
 unsafe fn transize<T, const N: usize>(
     f: unsafe fn(T, T) -> T,
     a: Simd<u8, N>,
@@ -142,7 +142,7 @@ where
 /// Make indices that yield 0 for x86
 #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
 #[allow(unused)]
-#[inline(always)]
+#[inline]
 fn zeroing_idxs<const N: usize>(idxs: Simd<u8, N>) -> Simd<u8, N>
 where
     LaneCount<N>: SupportedLaneCount,
